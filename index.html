@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instrutor Virtual - Curso Técnico em Administração</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <nav class="sidebar">
+        <h2><i class="fas fa-graduation-cap"></i> INSTRUTOR VIRTUAL</h2>
+
+        <ul class="nav-links">
+            <!-- Principal -->
+            <li class="nav-section-title">Principal</li>
+            <li><a href="#" onclick="router.navigate('dashboard')" class="active" id="nav-dashboard">
+                    <i class="fas fa-home"></i> <span>Início</span>
+                </a></li>
+            <li><a href="#" onclick="router.navigate('modules')" id="nav-modules">
+                    <i class="fas fa-book"></i> <span>Módulos</span>
+                </a></li>
+            <li><a href="#" onclick="router.navigate('activities')" id="nav-activities">
+                    <i class="fas fa-tasks"></i> <span>Atividades</span>
+                </a></li>
+            <li><a href="#" onclick="router.navigate('ai-instructor')" id="nav-ai">
+                    <i class="fas fa-robot"></i> <span>IA Instrutor</span>
+                </a></li>
+
+            <!-- Avaliação -->
+            <li class="nav-section-title">Avaliação</li>
+            <li><a href="#" onclick="router.navigate('simulados')" id="nav-simulados">
+                    <i class="fas fa-file-alt"></i> <span>Simulados</span>
+                </a></li>
+            <li><a href="#" onclick="router.navigate('trilhas')" id="nav-trilhas">
+                    <i class="fas fa-route"></i> <span>Trilhas IA</span>
+                </a></li>
+
+            <!-- Recursos -->
+            <li class="nav-section-title">Recursos</li>
+            <li><a href="#" onclick="router.navigate('ferramentas')" id="nav-ferramentas">
+                    <i class="fas fa-toolbox"></i> <span>Ferramentas</span>
+                </a></li>
+            <li><a href="#" onclick="router.navigate('comunidade')" id="nav-comunidade">
+                    <i class="fas fa-users"></i> <span>Comunidade</span>
+                </a></li>
+            <li><a href="#" onclick="router.navigate('biblioteca')" id="nav-biblioteca">
+                    <i class="fas fa-book-open"></i> <span>Biblioteca</span>
+                </a></li>
+
+            <!-- Pessoal -->
+            <li class="nav-section-title">Pessoal</li>
+            <li><a href="#" onclick="router.navigate('perfil')" id="nav-perfil">
+                    <i class="fas fa-user"></i> <span>Perfil</span>
+                </a></li>
+            <li><a href="#" onclick="router.navigate('certificados')" id="nav-certificados">
+                    <i class="fas fa-certificate"></i> <span>Certificados</span>
+                </a></li>
+            <li><a href="#" onclick="router.navigate('notificacoes')" id="nav-notificacoes">
+                    <i class="fas fa-bell"></i> <span>Notificações</span>
+                    <span class="notification-badge" id="notif-badge">3</span>
+                </a></li>
+            <li><a href="#" onclick="router.navigate('calendario')" id="nav-calendario">
+                    <i class="fas fa-calendar-alt"></i> <span>Calendário</span>
+                </a></li>
+
+            <!-- Sistema -->
+            <li class="nav-section-title">Sistema</li>
+            <li><a href="#" onclick="router.navigate('configuracoes')" id="nav-configuracoes">
+                    <i class="fas fa-cog"></i> <span>Configurações</span>
+                </a></li>
+        </ul>
+    </nav>
+
+    <main class="main-content">
+        <header>
+            <h1 id="page-title">Dashboard</h1>
+            <div class="user-profile">
+                <span>Olá, Aluno</span>
+                <div class="avatar">A</div>
+            </div>
+        </header>
+
+        <!-- Dashboard View -->
+        <div id="view-dashboard" class="view active">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-book-open"></i></div>
+                    <div>
+                        <h3>10 Módulos</h3>
+                        <p>Disponíveis</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-chart-bar"></i></div>
+                    <div>
+                        <h3 id="progress-text">0%</h3>
+                        <p>Concluído</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-star"></i></div>
+                    <div>
+                        <h3 id="points-text">0</h3>
+                        <p>Pontos</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-certificate"></i></div>
+                    <div>
+                        <h3 id="certificates-count">0</h3>
+                        <p>Certificados</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Final Exam Button -->
+            <div class="final-exam-card locked" id="final-exam-card" onclick="app.startCourseExam()">
+                <div class="exam-icon"><i class="fas fa-lock"></i></div>
+                <div class="exam-info">
+                    <h3>Avaliação Final do Curso</h3>
+                    <p>Complete 100% dos módulos para desbloquear.</p>
+                </div>
+            </div>
+
+            <h2>Atalhos Rápidos</h2>
+            <div class="quick-actions-grid">
+                <div class="quick-action-card" onclick="router.navigate('modules')">
+                    <i class="fas fa-book"></i>
+                    <h3>Continuar Estudando</h3>
+                </div>
+                <div class="quick-action-card" onclick="router.navigate('trilhas')">
+                    <i class="fas fa-route"></i>
+                    <h3>Trilha Recomendada</h3>
+                </div>
+                <div class="quick-action-card" onclick="router.navigate('simulados')">
+                    <i class="fas fa-file-alt"></i>
+                    <h3>Fazer Simulado</h3>
+                </div>
+                <div class="quick-action-card" onclick="router.navigate('ferramentas')">
+                    <i class="fas fa-toolbox"></i>
+                    <h3>Ferramentas</h3>
+                </div>
+            </div>
+
+            <h2>Módulos Recentes</h2>
+            <div class="modules-grid" id="dashboard-modules-list">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+
+        <!-- Modules List View -->
+        <div id="view-modules" class="view">
+            <div class="modules-grid" id="modules-list">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+
+        <!-- Module Detail View -->
+        <div id="view-module-detail" class="view">
+            <button class="back-btn" onclick="router.navigate('modules')"><i class="fas fa-arrow-left"></i> Voltar para
+                Módulos</button>
+            <div class="module-detail-header">
+                <h2 id="detail-title">Título do Módulo</h2>
+                <p id="detail-desc">Descrição do módulo</p>
+            </div>
+
+            <!-- Visual Lesson Player -->
+            <div class="lesson-player" id="lesson-player">
+                <div id="lesson-slides-container" style="flex-grow: 1; position: relative;">
+                    <!-- Slides injected here -->
+                </div>
+                <div class="player-controls">
+                    <button class="player-btn" onclick="player.prev()"><i class="fas fa-step-backward"></i></button>
+                    <button class="player-btn" id="btn-play" onclick="player.play()"><i
+                            class="fas fa-play"></i></button>
+                    <button class="player-btn" onclick="player.next()"><i class="fas fa-step-forward"></i></button>
+                </div>
+            </div>
+
+            <div class="module-content" id="detail-content">
+                <!-- Topics injected here -->
+            </div>
+
+            <button id="btn-finish-module" class="finish-btn" onclick="app.markModuleComplete()">
+                <i class="fas fa-check-circle"></i> Concluir Leitura do Módulo
+            </button>
+        </div>
+
+        <!-- Activities List View -->
+        <div id="view-activities" class="view">
+            <h2>Atividades por Módulo</h2>
+            <p>Realize as avaliações de cada módulo para testar seus conhecimentos.</p>
+            <div class="modules-grid" id="activities-list">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+
+        <!-- Activity Detail View (Module Quiz) -->
+        <div id="view-activity-detail" class="view">
+            <button class="back-btn" onclick="router.navigate('activities')"><i class="fas fa-arrow-left"></i> Voltar
+                para Atividades</button>
+            <div class="module-detail-header">
+                <h2 id="activity-title">Avaliação: Título do Módulo</h2>
+                <p>Responda as 10 questões abaixo.</p>
+            </div>
+            <div class="final-quiz-container" id="activity-quiz-container">
+                <!-- Questions injected here -->
+            </div>
+        </div>
+
+        <!-- Course Final Exam View -->
+        <div id="view-course-exam" class="view">
+            <button class="back-btn" onclick="router.navigate('dashboard')"><i class="fas fa-arrow-left"></i> Voltar
+                para Dashboard</button>
+            <div class="module-detail-header" style="border-left: 5px solid gold;">
+                <h2><i class="fas fa-graduation-cap"></i> Exame Final do Curso</h2>
+                <p>Parabéns por chegar até aqui! Esta prova reúne conhecimentos de todos os módulos.</p>
+            </div>
+            <div class="final-quiz-container" id="course-exam-container">
+                <!-- Questions injected here -->
+            </div>
+        </div>
+
+        <!-- AI Instructor View -->
+        <div id="view-ai-instructor" class="view">
+            <div class="chat-container">
+                <div class="chat-messages" id="chat-messages">
+                    <div class="message bot">
+                        Olá! Sou seu Instrutor Virtual. Como posso te ajudar hoje com seus estudos de Administração?
+                    </div>
+                </div>
+                <div class="chat-input-area">
+                    <input type="text" id="chat-input" placeholder="Digite sua dúvida...">
+                    <button onclick="chat.sendMessage()"><i class="fas fa-paper-plane"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Simulados View -->
+        <div id="view-simulados" class="view">
+            <h2>Simulados e Testes</h2>
+            <p>Avalie seu conhecimento com simulados completos.</p>
+            <div class="info-card">
+                <i class="fas fa-info-circle"></i>
+                <p>Os simulados estarão disponíveis após você concluir pelo menos 3 módulos.</p>
+            </div>
+        </div>
+
+        <!-- Trilhas View -->
+        <div id="view-trilhas" class="view">
+            <h2>Trilhas de Aprendizado Personalizadas</h2>
+            <p>A IA analisou seu progresso e recomenda a seguinte trilha de estudos:</p>
+            <div id="trilhas-container">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+
+        <!-- Ferramentas View -->
+        <div id="view-ferramentas" class="view">
+            <h2>Ferramentas Administrativas</h2>
+            <p>Ferramentas práticas para aplicar os conceitos aprendidos.</p>
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <i class="fas fa-chart-pie"></i>
+                    <h3>Análise SWOT</h3>
+                    <p>Crie sua matriz de forças, fraquezas, oportunidades e ameaças.</p>
+                    <button class="tool-btn">Em Breve</button>
+                </div>
+                <div class="tool-card">
+                    <i class="fas fa-money-bill-wave"></i>
+                    <h3>Fluxo de Caixa</h3>
+                    <p>Simule e gerencie o fluxo de caixa de uma empresa.</p>
+                    <button class="tool-btn">Em Breve</button>
+                </div>
+                <div class="tool-card">
+                    <i class="fas fa-sitemap"></i>
+                    <h3>Organograma</h3>
+                    <p>Crie e visualize estruturas organizacionais.</p>
+                    <button class="tool-btn">Em Breve</button>
+                </div>
+                <div class="tool-card">
+                    <i class="fas fa-calculator"></i>
+                    <h3>Indicadores Financeiros</h3>
+                    <p>Calcule ROI, margem de lucro e outros indicadores.</p>
+                    <button class="tool-btn">Em Breve</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Comunidade View -->
+        <div id="view-comunidade" class="view">
+            <h2>Comunidade de Aprendizado</h2>
+            <div class="info-card">
+                <i class="fas fa-users"></i>
+                <h3>Fórum em Desenvolvimento</h3>
+                <p>Em breve você poderá interagir com outros alunos, tirar dúvidas e compartilhar conhecimento!</p>
+            </div>
+        </div>
+
+        <!-- Biblioteca View -->
+        <div id="view-biblioteca" class="view">
+            <h2>Biblioteca Digital</h2>
+            <div class="info-card">
+                <i class="fas fa-book-open"></i>
+                <h3>Materiais Complementares</h3>
+                <p>PDFs, vídeos e materiais de apoio estarão disponíveis em breve.</p>
+            </div>
+        </div>
+
+        <!-- Perfil View -->
+        <div id="view-perfil" class="view">
+            <h2>Meu Perfil</h2>
+            <div class="profile-container">
+                <div class="profile-header">
+                    <div class="profile-avatar-large">A</div>
+                    <div class="profile-info">
+                        <h3>Aluno Demo</h3>
+                        <p>aluno@exemplo.com</p>
+                        <p class="profile-joined">Membro desde: Novembro 2025</p>
+                    </div>
+                </div>
+                <div class="profile-stats-detailed">
+                    <div class="profile-stat-item">
+                        <i class="fas fa-book"></i>
+                        <div>
+                            <h4 id="profile-modules-completed">0</h4>
+                            <p>Módulos Concluídos</p>
+                        </div>
+                    </div>
+                    <div class="profile-stat-item">
+                        <i class="fas fa-star"></i>
+                        <div>
+                            <h4 id="profile-points">0</h4>
+                            <p>Pontos Totais</p>
+                        </div>
+                    </div>
+                    <div class="profile-stat-item">
+                        <i class="fas fa-certificate"></i>
+                        <div>
+                            <h4 id="profile-certificates">0</h4>
+                            <p>Certificados</p>
+                        </div>
+                    </div>
+                    <div class="profile-stat-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <h4>12h</h4>
+                            <p>Tempo de Estudo</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Certificados View -->
+        <div id="view-certificados" class="view">
+            <h2>Meus Certificados</h2>
+            <div id="certificates-container">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+
+        <!-- Notificações View -->
+        <div id="view-notificacoes" class="view">
+            <h2>Notificações</h2>
+            <div class="notifications-list" id="notifications-list">
+                <div class="notification-item unread">
+                    <i class="fas fa-info-circle"></i>
+                    <div>
+                        <h4>Bem-vindo ao Instrutor Virtual!</h4>
+                        <p>Comece explorando os módulos disponíveis.</p>
+                        <span class="notif-time">Hoje</span>
+                    </div>
+                </div>
+                <div class="notification-item unread">
+                    <i class="fas fa-robot"></i>
+                    <div>
+                        <h4>IA Instrutor está disponível</h4>
+                        <p>Tire suas dúvidas a qualquer momento com nosso assistente virtual.</p>
+                        <span class="notif-time">Hoje</span>
+                    </div>
+                </div>
+                <div class="notification-item unread">
+                    <i class="fas fa-lightbulb"></i>
+                    <div>
+                        <h4>Dica de Estudo</h4>
+                        <p>Comece pelo módulo "Fundamentos da Administração" para construir uma base sólida.</p>
+                        <span class="notif-time">Hoje</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Calendário View -->
+        <div id="view-calendario" class="view">
+            <h2>Calendário e Agenda</h2>
+            <div class="info-card">
+                <i class="fas fa-calendar-alt"></i>
+                <h3>Planejamento de Estudos</h3>
+                <p>O calendário interativo estará disponível em breve para você organizar suas atividades.</p>
+            </div>
+        </div>
+
+        <!-- Configurações View -->
+        <div id="view-configuracoes" class="view">
+            <h2>Configurações</h2>
+            <div class="settings-container">
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <i class="fas fa-moon"></i>
+                        <div>
+                            <h4>Modo Escuro</h4>
+                            <p>Ative o tema escuro para reduzir o cansaço visual.</p>
+                        </div>
+                    </div>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="dark-mode-toggle" onchange="app.toggleDarkMode()">
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <i class="fas fa-bell"></i>
+                        <div>
+                            <h4>Notificações</h4>
+                            <p>Receba lembretes e atualizações.</p>
+                        </div>
+                    </div>
+                    <label class="toggle-switch">
+                        <input type="checkbox" checked>
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <i class="fas fa-volume-up"></i>
+                        <div>
+                            <h4>Sons do Sistema</h4>
+                            <p>Ative sons para feedback de ações.</p>
+                        </div>
+                    </div>
+                    <label class="toggle-switch">
+                        <input type="checkbox">
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/data.js"></script>
+    <script src="js/app.js"></script>
+</body>
+
+</html>
